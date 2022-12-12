@@ -1,0 +1,18 @@
+1. University library student
+Where the bus is?
+Nearest bus stop
+Show the route
+Should show the timetable
+Show how long the bus ride will take?
+Show how many stops to go to reach your destination
+
+
+2. Victor
+The estimated time for the journey.
+Time for each bus. Arrival time and departure time
+Would like the app to show the nearest stops.
+To notify all the stops within the routes during the journey
+Would like to know if the bus stops at specific locations.
+
+
+
