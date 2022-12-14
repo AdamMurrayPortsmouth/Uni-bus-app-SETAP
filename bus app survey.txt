@@ -1,4 +1,4 @@
-1. University library student
+1. Jerry
 Where the bus is?
 Nearest bus stop
 Show the route
@@ -14,5 +14,9 @@ Would like the app to show the nearest stops.
 To notify all the stops within the routes during the journey
 Would like to know if the bus stops at specific locations.
 
+3. Romain
 
-
+Show the timetable 
+An account log in system
+Provide information about any disruptions or faults on the journey beforehand.
+Show any possible routes to reach the destination.
