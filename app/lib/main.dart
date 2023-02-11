@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:path/path.dart' as p;
 
@@ -71,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
+
     var controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -89,9 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
             return NavigationDecision.navigate;
           },
         ),
-      )
-      ..loadRequest(Uri.file(p.join("resources/open-layers-map/map.html")));
+      );
+    _loadHtmlFromAssets(controller);
 
+    WebViewWidget webView = WebViewWidget(controller: controller);
 
     return Scaffold(
         body: Container(
@@ -105,8 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
             borderRadius: BorderRadius.zero,
             border: Border.all(color: Color(0x4d9e9e9e), width: 1)
           ),
-          child: WebViewWidget(controller: controller)
+          child: webView
           ),
         );
+  }
+
+  _loadHtmlFromAssets(WebViewController controller) async {
+    String fileAsString = await  rootBundle.loadString("files/open-layers-map/map.html");
+    controller.loadHtmlString(fileAsString);
   }
 }
