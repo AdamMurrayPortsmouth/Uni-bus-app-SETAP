@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
 
-    var controller = WebViewController()
+    var webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
@@ -93,10 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
             return NavigationDecision.navigate;
           },
         ),
-      );
-    _loadHtmlFromAssets(controller);
+      )
+      ..loadFile("file:///android_asset/flutter_assets/files/open-layers-map/map.html")
+      ..loadFile("file:///android_asset/flutter_assets/files/open-layers-map/core-behaviour.js");
 
-    WebViewWidget webView = WebViewWidget(controller: controller);
 
     return Scaffold(
         body: Container(
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
             borderRadius: BorderRadius.zero,
             border: Border.all(color: Color(0x4d9e9e9e), width: 1)
           ),
-          child: webView
+          child: WebViewWidget(controller: webViewController)
           ),
         );
   }
