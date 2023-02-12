@@ -93,8 +93,19 @@ class _MyHomePageState extends State<MyHomePage> {
             return NavigationDecision.navigate;
           },
         ),
-      )
-      ..loadFile("file:///android_asset/flutter_assets/assets/files/open-layers-map/map.html");
+      );
+    if (Platform.isAndroid) {
+      webViewController.loadFile(
+          "file:///android_asset/flutter_assets/assets/files/open-layers-map/map.html");
+    }
+    else if (Platform.isIOS)
+      {
+        // TODO: Add the absolute path for ios
+        webViewController.loadFile(
+            "assets/files/open-layers-map/map.html");
+      }
+
+
 
     return Scaffold(
         body: Container(
