@@ -63,10 +63,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/files/open-layers-map/ol-v6.13.0/
-    - assets/files/open-layers-map/
-    - assets/files/
-
+    - assets/open-layers-map/ol-v6.13.0/
+    - assets/open-layers-map/
+    - assets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
