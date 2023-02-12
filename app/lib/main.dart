@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       )
-      ..loadFile("file:///android_asset/flutter_assets/files/open-layers-map/map.html");
+      ..loadFile("file:///android_asset/flutter_assets/assets/files/open-layers-map/map.html");
 
     return Scaffold(
         body: Container(
