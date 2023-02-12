@@ -60,7 +60,7 @@
         style: new ol.style.Style({
             image: new ol.style.Icon({
                 anchor: [0.5, 1],
-                scale: [0.04, 0.04],
+                scale: [0.5, 0.5],
                 src: "busStopMarker.png",
             }),
         }),
@@ -96,6 +96,27 @@
     });
     map.addLayer(LandmarkMarkersLayer);
 
+
+    /*
+        Detects if a marker has been clicked
+    */
+
+    let areMarkersClickable = true;
+
+    map.on("click", function(e) {
+        if (!areMarkersClickable) return;
+
+        var markerFound = false;
+        map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
+            if (layer.id == "markerLayer" && markerFound == false)
+            {
+                markerClicked(feature);
+                markerFound = true;
+            }
+        })
+    });
+
+
     /*
         Adds the markers
     */
@@ -119,31 +140,10 @@
     }
 
 
-
-    /*
-    Detects if a marker has been clicked
-    */
-
-    let areMarkersClickable = true;
-
-    map.on("click", function(e) {
-        if (!areMarkersClickable) return;
-
-        var markerFound = false;
-        map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-            if (layer.id == "markerLayer" && markerFound == false)
-            {
-                markerClicked(feature.getId());
-                markerFound = true;
-            }
-        })
-    });
-
-
     // Marker interaction
 
-    function markerClicked(markedFeature){
-        // TODO: Add method in dart to be called from here
+    function markerClicked(marker){
+        markerClicked.postMessage(marker.getId());
     }
 </script>
 </html>

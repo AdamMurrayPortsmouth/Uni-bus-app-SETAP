@@ -44,7 +44,17 @@ class OpenLayersMap
 
   addMarkers()
   {
-    String jsObject = "{id: test, longitude: -1.0894829, latitude: 50.7918624}";
+    // TODO: Use Actual data and remove the test data
+    String jsObject = "{id: 1, longitude: -1.0894829, latitude: 50.7918624}";
     webViewController.runJavaScript("addBusStopMarker($jsObject)");
+  }
+
+  setUpMarkerClicked()
+  {
+    webViewController.addJavaScriptChannel("markerClicked", onMessageReceived: (JavaScriptMessage markerIdMessage)
+    {
+      String markerId = markerIdMessage.message;
+      // TODO: Add functionality to use the markerId
+    });
   }
 }
