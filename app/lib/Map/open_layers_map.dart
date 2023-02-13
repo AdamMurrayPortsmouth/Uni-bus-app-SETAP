@@ -55,9 +55,9 @@ class OpenLayersMap
 
   _addMarkers()
   {
-    // TODO: Use Actual data and remove the test data
-    String jsObject = "{id: '1', longitude: -1.0894829, latitude: 50.7918624}";
-    webViewController.runJavaScript("addBusStopMarker($jsObject)");
+    // TODO: Use Actual data
+    //String jsObject = "{id: $id, longitude: $long, latitude: $lat}";
+    //webViewController.runJavaScript("addBusStopMarker($jsObject)");
   }
 
   _markerClicked(String markerId)
