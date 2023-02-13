@@ -1,0 +1,145 @@
+<html lang = "en">
+<head>
+
+    <meta charset = "UTF-8">
+    <title>Map</title>
+
+    <!-- OpenLayers v6.13.0 (https://openlayers.org/) -->
+    <script src = "ol-v6.13.0/ol.js"></script>
+    <link rel = "stylesheet" href = "ol-v6.13.0/ol.css">
+
+    <script src="https://unpkg.com/elm-pep"></script>
+
+    <!-- Ensures the map takes up the full amount of space. -->
+    <link rel = "stylesheet" href = "map.css">
+</head>
+
+<body>
+    <div id="js-map" class="map"></div>
+</body>
+
+<script id="core-behaviour">
+
+</script>
+
+
+<script id="markerBehaviour">
+    /*
+        Layers
+    */
+
+    // This layer shows Bing maps.
+
+    const rasterLayer = new ol.layer.Tile({
+        source: new ol.source.BingMaps({
+            key: 'LKWeGV5hgC5HHHG4V7hY~iB_5lc6FjIxDktEpAU2dXw~AnwVbzV433LA6i_4U4NcMYmZ0dUpAPanUAJt3Ru2SWuEIjFnZyZ1gnG8neDCI1I2',
+            imagerySet: "AerialWithLabelsOnDemand",
+        }),
+    });
+
+    /*
+        Map
+    */
+
+    const map = new ol.Map({
+        view: new ol.View({
+            center: new ol.proj.fromLonLat([-1.0894829, 50.7918624]),
+            zoom: 15,
+        }),
+        layers: [rasterLayer],
+        target: "js-map" // Change this to 'map'
+    });
+
+    /*
+        Layers
+    */
+
+    // This layer shows the bus stop markers
+    var BusStopMarkersLayer = new ol.layer.Vector({
+        source: new ol.source.Vector(),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 1],
+                scale: [0.15, 0.15],
+                src: "busStopMarker.png",
+            }),
+        }),
+    });
+    BusStopMarkersLayer.isMarkerLayer = true;
+    map.addLayer(BusStopMarkersLayer);
+
+    // This layer shows the uni building markers
+    var UniBuildingMarkersLayer = new ol.layer.Vector({
+        source: new ol.source.Vector(),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 1],
+                scale: [0.15, 0.15],
+                src: "uniBuildingMarker.png",
+            }),
+        }),
+    });
+    UniBuildingMarkersLayer.isMarkerLayer = true;
+    map.addLayer(UniBuildingMarkersLayer);
+
+    // This layer shows the landmark markers
+    var LandmarkMarkersLayer = new ol.layer.Vector({
+        source: new ol.source.Vector(),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 1],
+                scale: [0.15, 0.15],
+                src: "landmarkMarker.png",
+            }),
+        }),
+    });
+    LandmarkMarkersLayer.isMarkerLayer = true;
+    map.addLayer(LandmarkMarkersLayer);
+
+
+    /*
+        Detects if a marker has been clicked
+    */
+
+    map.on("click", function(e) {
+
+        var markerFound = false;
+        map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
+            if (layer.isMarkerLayer && markerFound == false)
+            {
+                markerClicked(feature);
+                markerFound = true;
+            }
+        })
+    });
+
+
+    /*
+        Adds the markers
+    */
+
+    function addBusStopMarker(markedFeature) {
+        var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([markedFeature.longitude, markedFeature.latitude])));
+        marker.setId(markedFeature.id);
+        BusStopMarkersLayer.getSource().addFeature(marker);
+    }
+
+    function addUniBuildingMarker(markedFeature) {
+        var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([markedFeature.longitude, markedFeature.latitude])));
+        marker.setId(markedFeature.id);
+        UniBuildingMarkersLayer.getSource().addFeature(marker);
+    }
+
+    function addLandmarkMarker(markedFeature) {
+        var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([markedFeature.longitude, markedFeature.latitude])));
+        marker.setId(markedFeature.id);
+        LandmarkMarkersLayer.getSource().addFeature(marker);
+    }
+
+    // Marker interaction
+
+    function markerClicked(marker){
+        MarkerClickedDart.postMessage("hi");
+    }
+</script>
+</html>
