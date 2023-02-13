@@ -60,7 +60,7 @@
         style: new ol.style.Style({
             image: new ol.style.Icon({
                 anchor: [0.5, 1],
-                scale: [0.5, 0.5],
+                scale: [0.15, 0.15],
                 src: "busStopMarker.png",
             }),
         }),
@@ -101,10 +101,7 @@
         Detects if a marker has been clicked
     */
 
-    let areMarkersClickable = true;
-
     map.on("click", function(e) {
-        if (!areMarkersClickable) return;
 
         var markerFound = false;
         map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
@@ -138,7 +135,6 @@
         marker.setId(markedFeature.id);
         LandmarkMarkersLayer.getSource().addFeature(marker);
     }
-
 
     // Marker interaction
 
