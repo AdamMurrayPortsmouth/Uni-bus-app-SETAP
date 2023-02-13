@@ -64,8 +64,8 @@
                 src: "busStopMarker.png",
             }),
         }),
-        id: "markerLayer"
     });
+    BusStopMarkersLayer.isMarkerLayer = true;
     map.addLayer(BusStopMarkersLayer);
 
     // This layer shows the uni building markers
@@ -78,8 +78,8 @@
                 src: "uniBuildingMarker.png",
             }),
         }),
-        id: "markerLayer"
     });
+    UniBuildingMarkersLayer.isMarkerLayer = true;
     map.addLayer(UniBuildingMarkersLayer);
 
     // This layer shows the landmark markers
@@ -92,8 +92,8 @@
                 src: "landmarkMarker.png",
             }),
         }),
-        id: "markerLayer"
     });
+    LandmarkMarkersLayer.isMarkerLayer = true;
     map.addLayer(LandmarkMarkersLayer);
 
 
@@ -105,7 +105,7 @@
 
         var markerFound = false;
         map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-            if (layer.id == "markerLayer" && markerFound == false)
+            if (layer.isMarkerLayer && markerFound == false)
             {
                 markerClicked(feature);
                 markerFound = true;
@@ -139,7 +139,7 @@
     // Marker interaction
 
     function markerClicked(marker){
-        markerClicked.postMessage(marker.getId());
+        MarkerClickedDart.postMessage("hi");
     }
 </script>
 </html>

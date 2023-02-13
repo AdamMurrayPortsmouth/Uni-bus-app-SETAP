@@ -19,6 +19,9 @@ class OpenLayersMap
   {
     return WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..addJavaScriptChannel("MarkerClickedDart", onMessageReceived: (JavaScriptMessage markerIdMessage) {
+        _markerClicked(markerIdMessage.message);
+      })
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
@@ -57,12 +60,8 @@ class OpenLayersMap
     webViewController.runJavaScript("addBusStopMarker($jsObject)");
   }
 
-  _setUpMarkerClicked()
+  _markerClicked(String markerId)
   {
-    webViewController.addJavaScriptChannel("markerClicked", onMessageReceived: (JavaScriptMessage markerIdMessage)
-    {
-      String markerId = markerIdMessage.message;
       // TODO: Add functionality to use the markerId
-    });
   }
 }
