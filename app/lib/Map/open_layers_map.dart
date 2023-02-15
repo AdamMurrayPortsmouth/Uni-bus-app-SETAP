@@ -55,7 +55,7 @@ class OpenLayersMap
 
   _addMarkers()
   {
-    // TODO: Use Actual data
+    // TODO:  Actual data
     //String jsObject = "{id: $id, longitude: $long, latitude: $lat}";
     //webViewController.runJavaScript("addBusStopMarker($jsObject)");
   }
