@@ -77,7 +77,7 @@ class OpenLayersMap
         return;
     }
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    String jsObject = "{id: ${UserIcon.id.name}, longitude: ${position.longitude}, latitude: ${position.latitude}}";
+    String jsObject = "{id: '${UserIcon.id.name}', longitude: ${position.longitude}, latitude: ${position.latitude}}";
     webViewController.runJavaScript("addUserIcon($jsObject)");
   }
 }
