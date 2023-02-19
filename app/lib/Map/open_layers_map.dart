@@ -78,6 +78,6 @@ class OpenLayersMap
     }
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     String jsObject = "{id: ${UserIcon.id.name}, longitude: ${position.longitude}, latitude: ${position.latitude}}";
-    webViewController.runJavaScript("addUserLocation($jsObject)");
+    webViewController.runJavaScript("addUserIcon($jsObject)");
   }
 }

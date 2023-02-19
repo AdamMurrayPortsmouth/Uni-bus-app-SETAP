@@ -150,7 +150,7 @@
         LandmarkMarkersLayer.getSource().addFeature(marker);
     }
 
-    function addUserLocation(userPosition) {
+    function addUserIcon(userPosition) {
         var icon = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([userPosition.longitude, userPosition.latitude])));
         icon.setId(userPosition.id);
         UserLocationLayer.getSource().addFeature(icon);
