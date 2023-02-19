@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:path/path.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
@@ -31,6 +32,7 @@ class OpenLayersMap
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
             _addMarkers();
+            _addUserLocation();
           },
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {return NavigationDecision.navigate;},
@@ -63,5 +65,14 @@ class OpenLayersMap
   _markerClicked(String markerId)
   {
       // TODO: Add functionality to use the markerId
+  }
+
+  _addUserLocation() async
+  {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    double long = position.longitude;
+    double lat = position.latitude;
+    String jsObject = "{id: 1, longitude: $long, latitude: $lat}";
+    webViewController.runJavaScript("addUserLocation($jsObject)");
   }
 }
