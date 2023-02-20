@@ -75,13 +75,12 @@ class OpenLayersMap
     LocationPermissionsHandler handler = LocationPermissionsHandler.getHandler();
     Location location = handler.getLocation();
 
-    if (!await handler.hasPermission())
+    if (await handler.hasPermission())
     {
-        return;
+      LocationData currentLocation = await location.getLocation();
+      String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
+      webViewController.runJavaScript("addUserIcon($jsObject)");
     }
-    LocationData currentLocation = await location.getLocation();
-    String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
-    webViewController.runJavaScript("addUserIcon($jsObject)");
 
     location.onLocationChanged.listen((LocationData currentLocation) {
       String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
