@@ -72,10 +72,9 @@ class OpenLayersMap
 
   _addUserLocation() async
   {
-    Location location = new Location();
-
-    LocationPermissionsHandler.requestLocationPermission(location);
-
+    LocationPermissionsHandler handler = LocationPermissionsHandler.getHandler();
+    handler.requestLocationPermission();
+    Location location = handler.getLocation();
     location.onLocationChanged.listen((LocationData currentLocation) {
       String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
       webViewController.runJavaScript("addUserIcon($jsObject)");

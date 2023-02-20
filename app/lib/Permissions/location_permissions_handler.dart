@@ -4,7 +4,26 @@ import 'package:location/location.dart';
 
 class LocationPermissionsHandler
 {
-  static requestLocationPermission(Location location) async
+  static late LocationPermissionsHandler handler;
+  late Location location;
+
+  LocationPermissionsHandler._()
+  {
+    location = Location();
+  }
+
+  static LocationPermissionsHandler getHandler()
+  {
+    handler ??= LocationPermissionsHandler._();
+    return handler;
+  }
+
+  Location getLocation()
+  {
+    return location;
+  }
+
+  requestLocationPermission() async
   {
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
