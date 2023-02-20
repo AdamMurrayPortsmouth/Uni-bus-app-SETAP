@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:app/Map/user_icon_enum.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 import 'package:path/path.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
@@ -72,12 +72,13 @@ class OpenLayersMap
 
   _addUserLocation() async
   {
-    if (!await LocationPermissionsHandler.hasLocationPermission())
-    {
-        return;
-    }
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    String jsObject = "{id: '${UserIcon.id.name}', longitude: ${position.longitude}, latitude: ${position.latitude}}";
-    webViewController.runJavaScript("addUserIcon($jsObject)");
+    Location location = new Location();
+
+    LocationPermissionsHandler.requestLocationPermission(location);
+
+    location.onLocationChanged.listen((LocationData currentLocation) {
+      String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
+      webViewController.runJavaScript("addUserIcon($jsObject)");
+    });
   }
 }

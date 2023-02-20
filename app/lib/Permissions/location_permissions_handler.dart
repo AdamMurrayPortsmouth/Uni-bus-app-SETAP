@@ -1,19 +1,28 @@
-import 'package:geolocator/geolocator.dart';
+
+
+import 'package:location/location.dart';
 
 class LocationPermissionsHandler
 {
-  static requestLocationPermission() async
+  static requestLocationPermission(Location location) async
   {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied)
-    {
-      permission = await Geolocator.requestPermission();
-    }
-  }
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
 
-  static Future<bool> hasLocationPermission() async
-  {
-    LocationPermission permission = await Geolocator.checkPermission();
-    return permission != LocationPermission.denied;
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
   }
 }
