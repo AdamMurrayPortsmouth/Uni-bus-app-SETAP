@@ -35,7 +35,7 @@ class OpenLayersMap
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
             _addMarkers();
-            _addUserLocation();
+            _addUserLocationIcon();
           },
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {return NavigationDecision.navigate;},
@@ -70,15 +70,22 @@ class OpenLayersMap
       // TODO: Add functionality to use the markerId
   }
 
-  _addUserLocation() async
+  _addUserLocationIcon() async
   {
-    Location location = new Location();
+    LocationPermissionsHandler handler = LocationPermissionsHandler.getHandler();
+    Location location = handler.getLocation();
 
-    LocationPermissionsHandler.requestLocationPermission(location);
+    if (!await handler.hasPermission())
+    {
+        return;
+    }
+    LocationData currentLocation = await location.getLocation();
+    String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
+    webViewController.runJavaScript("addUserIcon($jsObject)");
 
     location.onLocationChanged.listen((LocationData currentLocation) {
       String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
-      webViewController.runJavaScript("addUserIcon($jsObject)");
+      webViewController.runJavaScript("updateUserIcon($jsObject)");
     });
   }
 }

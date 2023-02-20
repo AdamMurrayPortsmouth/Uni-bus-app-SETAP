@@ -4,25 +4,51 @@ import 'package:location/location.dart';
 
 class LocationPermissionsHandler
 {
-  static requestLocationPermission(Location location) async
+  static LocationPermissionsHandler? handler;
+  late Location location;
+
+  LocationPermissionsHandler._()
   {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+    location = Location();
+  }
 
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
+  static LocationPermissionsHandler getHandler()
+  {
+    handler ??= LocationPermissionsHandler._();
+    return handler!;
+  }
+
+  Location getLocation()
+  {
+    return location;
+  }
+
+  requestLocationPermission() async
+  {
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
         return;
       }
     }
 
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
         return;
       }
     }
+  }
+
+  Future<bool> hasPermission() async {
+    if (!await location.serviceEnabled()) {
+      return false;
+    }
+    return await location.hasPermission() != PermissionStatus.denied;
   }
 }
