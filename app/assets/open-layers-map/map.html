@@ -156,6 +156,20 @@
         UserLocationLayer.getSource().addFeature(icon);
     }
 
+    // Removes the users icon
+
+    function removeUserIcon(userPosition) {
+        var source = UserLocationLayer.getSource();
+        source.removeFeature(source.getFeatureById(userPosition.id));
+    }
+
+    // Updates the location of the users icon
+
+    function updateUserIcon(userPosition) {
+        removeUserIcon(userPosition);
+        addUserIcon(userPosition);
+    }
+
     // Marker interaction
 
     function markerClicked(marker){
