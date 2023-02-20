@@ -1,9 +1,13 @@
 import 'dart:io';
 
+import 'package:app/Map/user_icon_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:path/path.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../Permissions/location_permissions_handler.dart';
 
 class OpenLayersMap
 {
@@ -31,6 +35,7 @@ class OpenLayersMap
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
             _addMarkers();
+            _addUserLocation();
           },
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {return NavigationDecision.navigate;},
@@ -63,5 +68,16 @@ class OpenLayersMap
   _markerClicked(String markerId)
   {
       // TODO: Add functionality to use the markerId
+  }
+
+  _addUserLocation() async
+  {
+    if (!await LocationPermissionsHandler.hasLocationPermission())
+    {
+        return;
+    }
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    String jsObject = "{id: '${UserIcon.id.name}', longitude: ${position.longitude}, latitude: ${position.latitude}}";
+    webViewController.runJavaScript("addUserIcon($jsObject)");
   }
 }

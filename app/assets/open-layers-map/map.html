@@ -96,6 +96,20 @@
     LandmarkMarkersLayer.isMarkerLayer = true;
     map.addLayer(LandmarkMarkersLayer);
 
+    // This layer shows the Users location
+    var UserLocationLayer = new ol.layer.Vector({
+        source: new ol.source.Vector(),
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 1],
+                scale: [0.15, 0.15],
+                src: "UserIcon.png",
+            }),
+        }),
+    });
+    UserLocationLayer.isMarkerLayer = false;
+    map.addLayer(UserLocationLayer);
+
 
     /*
         Detects if a marker has been clicked
@@ -136,10 +150,16 @@
         LandmarkMarkersLayer.getSource().addFeature(marker);
     }
 
+    function addUserIcon(userPosition) {
+        var icon = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([userPosition.longitude, userPosition.latitude])));
+        icon.setId(userPosition.id);
+        UserLocationLayer.getSource().addFeature(icon);
+    }
+
     // Marker interaction
 
     function markerClicked(marker){
-        MarkerClickedDart.postMessage("hi");
+        MarkerClickedDart.postMessage(marker.getId());
     }
 </script>
 </html>
