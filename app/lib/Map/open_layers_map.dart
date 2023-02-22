@@ -4,8 +4,6 @@ import 'package:app/Map/user_icon_enum.dart';
 import 'package:app/MapData/map_data_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import 'package:path/path.dart';
-
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../MapData/bus_stop.dart';
