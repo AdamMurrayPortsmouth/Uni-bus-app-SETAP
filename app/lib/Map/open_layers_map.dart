@@ -16,11 +16,17 @@ import '../Permissions/location_permissions_handler.dart';
 class OpenLayersMap
 {
   late WebViewController webViewController;
+  Function(String)? _markerClickedFunction;
 
   OpenLayersMap()
   {
     webViewController = _createWebViewController();
     _loadMap();
+  }
+
+  onMarkerClicked(Function(String) markerClicked)
+  {
+    _markerClickedFunction = markerClicked;
   }
 
   WebViewController _createWebViewController()
@@ -101,7 +107,11 @@ class OpenLayersMap
 
   _markerClicked(String markerId)
   {
-      // TODO: Add functionality to use the markerId
+    if (_markerClickedFunction == null)
+    {
+      return;
+    }
+    _markerClickedFunction!(markerId);
   }
 
   _addUserLocationIcon() async

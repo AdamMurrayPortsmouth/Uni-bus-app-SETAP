@@ -11,6 +11,11 @@ class MapScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
 
+    map.onMarkerClicked((markerId)
+    {
+      // TODO: Add implementaion for what happens when a marker is clicked
+    });
+
     return Scaffold(
       body: Container(
           margin: EdgeInsets.zero,
