@@ -13,18 +13,23 @@ import '../Permissions/location_permissions_handler.dart';
 
 class OpenLayersMap
 {
-  late WebViewController webViewController;
+  late final WebViewController _webViewController;
   Function(String)? _markerClickedFunction;
 
   OpenLayersMap()
   {
-    webViewController = _createWebViewController();
+    _webViewController = _createWebViewController();
     _loadMap();
   }
 
   onMarkerClicked(Function(String) markerClicked)
   {
     _markerClickedFunction = markerClicked;
+  }
+
+  WebViewController getController()
+  {
+    return _webViewController;
   }
 
   WebViewController _createWebViewController()
@@ -58,13 +63,13 @@ class OpenLayersMap
   {
     String relativePath = "assets/open-layers-map/map.html";
     if (Platform.isAndroid) {
-      webViewController.loadFile(
+      _webViewController.loadFile(
           "file:///android_asset/flutter_assets/$relativePath");
     }
     else if (Platform.isIOS)
     {
       // TODO: Add the absolute path for ios
-      webViewController.loadFile(
+      _webViewController.loadFile(
           "$relativePath");
     }
   }
@@ -88,19 +93,19 @@ class OpenLayersMap
   _addBusStopMarker(String id, double long, double lat)
   {
     String jsObject = "{id: '$id', longitude: $long, latitude: $lat}";
-    webViewController.runJavaScript("addBusStopMarker($jsObject)");
+    _webViewController.runJavaScript("addBusStopMarker($jsObject)");
   }
 
   _addUniBuildingMarker(String id, double long, double lat)
   {
     String jsObject = "{id: '$id', longitude: $long, latitude: $lat}";
-    webViewController.runJavaScript("addUniBuildingMarker($jsObject)");
+    _webViewController.runJavaScript("addUniBuildingMarker($jsObject)");
   }
 
   _addLandmarkMarker(String id, double long, double lat)
   {
     String jsObject = "{id: '$id', longitude: $long, latitude: $lat}";
-    webViewController.runJavaScript("addLandmarkMarker($jsObject)");
+    _webViewController.runJavaScript("addLandmarkMarker($jsObject)");
   }
 
   _markerClicked(String markerId)
@@ -121,12 +126,12 @@ class OpenLayersMap
     {
       LocationData currentLocation = await location.getLocation();
       String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
-      webViewController.runJavaScript("addUserIcon($jsObject)");
+      _webViewController.runJavaScript("addUserIcon($jsObject)");
     }
 
     location.onLocationChanged.listen((LocationData currentLocation) {
       String jsObject = "{id: '${UserIcon.id.name}', longitude: ${currentLocation.longitude}, latitude: ${currentLocation.latitude}}";
-      webViewController.runJavaScript("updateUserIcon($jsObject)");
+      _webViewController.runJavaScript("updateUserIcon($jsObject)");
     });
   }
 }

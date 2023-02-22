@@ -6,12 +6,17 @@ import '../Map/open_layers_map.dart';
 
 class MapScreenState extends State<MainScreen> {
 
-  OpenLayersMap map = OpenLayersMap();
+  late final OpenLayersMap _map;
+
+  MapScreenState()
+  {
+    _map = OpenLayersMap();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    map.onMarkerClicked((markerId)
+    _map.onMarkerClicked((markerId)
     {
       // TODO: Add implementaion for what happens when a marker is clicked
     });
@@ -28,7 +33,7 @@ class MapScreenState extends State<MainScreen> {
               borderRadius: BorderRadius.zero,
               border: Border.all(color: Color(0x4d9e9e9e), width: 1)
           ),
-          child: WebViewWidget(controller: map.webViewController)
+          child: WebViewWidget(controller: _map.getController())
       ),
     );
   }
