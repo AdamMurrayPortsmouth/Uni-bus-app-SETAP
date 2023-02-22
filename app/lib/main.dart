@@ -18,5 +18,6 @@ class MyApp extends StatelessWidget {
     LocationPermissionsHandler.getHandler().requestLocationPermission();
     return const MaterialApp(
         home: MainScreen()
+    );
   }
 }
