@@ -2,7 +2,7 @@ import 'map_data.dart';
 
 class MapDataLoader
 {
-  static MapDataLoader? _handler;
+  static MapDataLoader? _mapDataLoader;
   late MapData _data;
   bool _loadingFinished = false;
 
@@ -12,8 +12,8 @@ class MapDataLoader
 
   static MapDataLoader getDataLoader()
   {
-    _handler ??= MapDataLoader._();
-    return _handler!;
+    _mapDataLoader ??= MapDataLoader._();
+    return _mapDataLoader!;
   }
 
   load()
