@@ -4,10 +4,12 @@ import 'MapData/map_data_loader.dart';
 import 'Permissions/location_permissions_handler.dart';
 import 'Screen/main_screen.dart';
 
+/// Target for start of application.
 void main() {
   runApp(const MyApp());
 }
 
+/// The entire application is started from this class.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

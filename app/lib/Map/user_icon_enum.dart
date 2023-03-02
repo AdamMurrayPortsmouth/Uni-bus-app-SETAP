@@ -1,3 +1,4 @@
+/// Defines the id for the user icon.
 enum UserIcon
 {
   id("UserIcon");

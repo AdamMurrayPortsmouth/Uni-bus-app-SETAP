@@ -1,5 +1,7 @@
 import 'map_data.dart';
 
+/// This loads the information from the backend and allows the frontend to
+/// access it.
 class MapDataLoader
 {
   static MapDataLoader? _mapDataLoader;
@@ -16,6 +18,9 @@ class MapDataLoader
     return _mapDataLoader!;
   }
 
+  /// This loads the information and if
+  /// onDataLoaded() has been called it runs the
+  /// function given to onDataLoaded().
   load()
   {
     // TODO: remove test and implement the load function
@@ -30,6 +35,8 @@ class MapDataLoader
     _dataLoaded!(_data);
   }
 
+  /// Sets the function to be called once the information has finished being
+  /// loaded, if it has already finished being loaded then it runs the function.
   onDataLoaded(Function(MapData) dataLoaded)
   {
     _dataLoaded = dataLoaded;
