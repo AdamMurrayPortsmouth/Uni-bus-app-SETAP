@@ -4,9 +4,13 @@
     <meta charset = "UTF-8">
     <title>Map</title>
 
-    <!-- OpenLayers v6.13.0 (https://openlayers.org/) -->
-    <script src = "ol-v6.13.0/ol.js"></script>
-    <link rel = "stylesheet" href = "ol-v6.13.0/ol.css">
+    <!-- OpenLayers v7.2.2 (https://openlayers.org/) -->
+    <script src = "ol/dist/ol.js"></script>
+    <script src = "ol/Map.js"></script>
+    <script src = "ol/View.js"></script>
+    <script src = "ol/layer/Tile.js"></script>
+    <script src = "ol/source/OSM.js"></script>
+    <link rel = "stylesheet" href = "ol/ol.css">
 
     <script src="https://unpkg.com/elm-pep"></script>
 
@@ -20,25 +24,8 @@
 
 <script id="core-behaviour">
 
-</script>
-
-
-<script id="markerBehaviour">
     /*
-        Layers
-    */
-
-    // This layer shows Bing maps.
-
-    const rasterLayer = new ol.layer.Tile({
-        source: new ol.source.BingMaps({
-            key: 'LKWeGV5hgC5HHHG4V7hY~iB_5lc6FjIxDktEpAU2dXw~AnwVbzV433LA6i_4U4NcMYmZ0dUpAPanUAJt3Ru2SWuEIjFnZyZ1gnG8neDCI1I2',
-            imagerySet: "AerialWithLabelsOnDemand",
-        }),
-    });
-
-    /*
-        Map
+     Map
     */
 
     const map = new ol.Map({
@@ -46,9 +33,18 @@
             center: new ol.proj.fromLonLat([-1.0894829, 50.7918624]),
             zoom: 15,
         }),
-        layers: [rasterLayer],
-        target: "js-map" // Change this to 'map'
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM(),
+            }),
+        ],
+        target: 'js-map',
     });
+
+</script>
+
+
+<script id="markerBehaviour">
 
     /*
         Layers
