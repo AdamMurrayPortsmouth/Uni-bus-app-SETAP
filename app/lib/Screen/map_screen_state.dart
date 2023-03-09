@@ -23,27 +23,78 @@ class MapScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
 
-
     return Scaffold(
-      body: Container(
-          margin: EdgeInsets.zero,
-          padding: EdgeInsets.zero,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              color: Color(0x1f000000),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.zero,
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1)
+      appBar:
+      AppBar(
+        elevation:4,
+        centerTitle:false,
+        automaticallyImplyLeading: false,
+        backgroundColor:Color(0xff3a57e8),
+        shape:RoundedRectangleBorder(
+          borderRadius:BorderRadius.zero,
+        ),
+        title:Text(
+          "AppBar",
+          style:TextStyle(
+            fontWeight:FontWeight.w400,
+            fontStyle:FontStyle.normal,
+            fontSize:14,
+            color:Color(0xff000000),
           ),
-          child: GoogleMap(
-            mapType: MapType.hybrid,
-            initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-          ), // Map
+        ),
+        leading: Icon(
+          Icons.arrow_back,
+          color:Color(0xff212435),
+          size:24,
+        ),
       ),
-    );
+      body:
+      Column(
+        mainAxisAlignment:MainAxisAlignment.start,
+        crossAxisAlignment:CrossAxisAlignment.center,
+        mainAxisSize:MainAxisSize.max,
+        children: [
+          Container(
+            margin:EdgeInsets.zero,
+            padding:EdgeInsets.zero,
+            width:200,
+            height:100,
+            decoration: BoxDecoration(
+              color:Color(0x1f000000),
+              shape:BoxShape.rectangle,
+              borderRadius:BorderRadius.zero,
+              border:Border.all(color:Color(0x4d9e9e9e),width:1),
+            ),
+            child: GoogleMap(
+              mapType: MapType.hybrid,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+            ), // Map
+          )
+
+          ,
+          MaterialButton(
+            onPressed:(){},
+            color:Color(0xffffffff),
+            elevation:0,
+            shape:RoundedRectangleBorder(
+              borderRadius:BorderRadius.zero,
+              side:BorderSide(color:Color(0xff808080),width:1),
+            ),
+            padding:EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child:Text("Text Button", style: TextStyle( fontSize:14,
+              fontWeight:FontWeight.w400,
+              fontStyle:FontStyle.normal,
+            ),),
+            textColor:Color(0xff000000),
+            height:40,
+            minWidth:140,
+          ),
+        ],),
+    )
+    ;
+
   }
 }
