@@ -1,27 +1,28 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'main_screen.dart';
-import '../Map/open_layers_map.dart';
+
 /// This class contains the GUI structure for the screen that contains the map.
 class MapScreenState extends State<MainScreen> {
   // The instance of our map
-  late final OpenLayersMap _map;
+  final Completer<GoogleMapController> _controller =
+  Completer<GoogleMapController>();
 
-  /// Constructor for MapScreenState creates the map.
-  MapScreenState()
-  {
-    _map = OpenLayersMap();
-  }
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(50.7978527, -1.0841577),
+    zoom: 14,
+  );
+
+
 
   /// Builds the GUI and places the map inside.
   @override
   Widget build(BuildContext context) {
 
-    _map.onMarkerClicked((markerId)
-    {
-      // TODO: Add implementation for what happens when a marker is clicked
-    });
 
     return Scaffold(
       body: Container(
@@ -35,7 +36,13 @@ class MapScreenState extends State<MainScreen> {
               borderRadius: BorderRadius.zero,
               border: Border.all(color: Color(0x4d9e9e9e), width: 1)
           ),
-          child: WebViewWidget(controller: _map.getController()) // Map
+          child: GoogleMap(
+            mapType: MapType.hybrid,
+            initialCameraPosition: _kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
+          ), // Map
       ),
     );
   }
