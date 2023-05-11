@@ -1,6 +1,6 @@
 import 'feature.dart';
 
-/// Holds the information for a bus stop.
+/// Holds bus stop information.
 class BusStop extends Feature
 {
   /// The constructor assigning the id, name, longitude and latitude.
