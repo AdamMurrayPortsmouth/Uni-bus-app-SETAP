@@ -29,7 +29,7 @@ class MapScreenState extends State<MainScreen> {
         elevation:4,
         centerTitle:false,
         automaticallyImplyLeading: false,
-        backgroundColor:const Color(0xffa93ae8),
+        backgroundColor:const Color(0xffcf97ef),
         shape:const RoundedRectangleBorder(
           borderRadius:BorderRadius.zero,
         ),
@@ -119,7 +119,7 @@ class MapScreenState extends State<MainScreen> {
                     color:Color(0xff000000),
                   ),
                   filled:true,
-                  fillColor:const Color(0xab700c7d),
+                  fillColor:const Color(0xab700c7c),
                   isDense:false,
                   contentPadding:const EdgeInsets.fromLTRB(12, 8, 12, 8),
                 ),
@@ -176,7 +176,7 @@ class MapScreenState extends State<MainScreen> {
                 width:500,
                 height:590,
                 decoration: BoxDecoration(
-                  color:const Color(0xb4ebee02),
+                  color:const Color(0xd5ebee02),
                   shape:BoxShape.rectangle,
                   borderRadius:BorderRadius.zero,
                   border:Border.all(color:const Color(0x4d9e9e9e),width:1),
