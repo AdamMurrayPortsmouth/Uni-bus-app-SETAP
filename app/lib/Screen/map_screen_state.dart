@@ -23,17 +23,17 @@ class MapScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       appBar:
       AppBar(
         elevation:4,
         centerTitle:false,
         automaticallyImplyLeading: false,
-        backgroundColor:Color(0xffa93ae8),
-        shape:RoundedRectangleBorder(
+        backgroundColor:const Color(0xffa93ae8),
+        shape:const RoundedRectangleBorder(
           borderRadius:BorderRadius.zero,
         ),
-        title:Text(
+        title:const Text(
           "Map Screen",
           style:TextStyle(
             fontWeight:FontWeight.w400,
@@ -42,22 +42,22 @@ class MapScreenState extends State<MainScreen> {
             color:Color(0xff000000),
           ),
         ),
-        leading: Icon(
+        leading: const Icon(
           Icons.arrow_back,
           color:Color(0xff212435),
           size:24,
         ),
       ),
       body:Container(
-        margin:EdgeInsets.all(0),
-        padding:EdgeInsets.all(0),
+        margin:const EdgeInsets.all(0),
+        padding:const EdgeInsets.all(0),
         width:500,
         height:2400,
         decoration: BoxDecoration(
-          color:Color(0x1f000000),
+          color:const Color(0x1f000000),
           shape:BoxShape.rectangle,
           borderRadius:BorderRadius.zero,
-          border:Border.all(color:Color(0x4d9e9e9e),width:1),
+          border:Border.all(color:const Color(0x4d9e9e9e),width:1),
         ),
         child:
         Container(
@@ -66,10 +66,10 @@ class MapScreenState extends State<MainScreen> {
           width:200,
           height:100,
           decoration: BoxDecoration(
-            color:Color(0x1f000000),
+            color:const Color(0x1f000000),
             shape:BoxShape.rectangle,
             borderRadius:BorderRadius.zero,
-            border:Border.all(color:Color(0x4d9e9e9e),width:1),
+            border:Border.all(color:const Color(0x4d9e9e9e),width:1),
           ),
           child:
 
@@ -83,7 +83,7 @@ class MapScreenState extends State<MainScreen> {
                 obscureText:false,
                 textAlign:TextAlign.start,
                 maxLines:1,
-                style:TextStyle(
+                style:const TextStyle(
                   fontWeight:FontWeight.w400,
                   fontStyle:FontStyle.normal,
                   fontSize:14,
@@ -92,36 +92,36 @@ class MapScreenState extends State<MainScreen> {
                 decoration:InputDecoration(
                   disabledBorder:OutlineInputBorder(
                     borderRadius:BorderRadius.circular(4.0),
-                    borderSide:BorderSide(
+                    borderSide:const BorderSide(
                         color:Color(0xff000000),
                         width:1
                     ),
                   ),
                   focusedBorder:OutlineInputBorder(
                     borderRadius:BorderRadius.circular(4.0),
-                    borderSide:BorderSide(
+                    borderSide:const BorderSide(
                         color:Color(0xff000000),
                         width:1
                     ),
                   ),
                   enabledBorder:OutlineInputBorder(
                     borderRadius:BorderRadius.circular(4.0),
-                    borderSide:BorderSide(
+                    borderSide:const BorderSide(
                         color:Color(0xff000000),
                         width:1
                     ),
                   ),
                   hintText:"From:Location",
-                  hintStyle:TextStyle(
+                  hintStyle:const TextStyle(
                     fontWeight:FontWeight.w400,
                     fontStyle:FontStyle.normal,
                     fontSize:14,
                     color:Color(0xff000000),
                   ),
                   filled:true,
-                  fillColor:Color(0xab700c7d),
+                  fillColor:const Color(0xab700c7d),
                   isDense:false,
-                  contentPadding:EdgeInsets.fromLTRB(12, 8, 12, 8),
+                  contentPadding:const EdgeInsets.fromLTRB(12, 8, 12, 8),
                 ),
               ),
               TextField(
@@ -129,7 +129,7 @@ class MapScreenState extends State<MainScreen> {
                 obscureText:false,
                 textAlign:TextAlign.start,
                 maxLines:1,
-                style:TextStyle(
+                style:const TextStyle(
                   fontWeight:FontWeight.w400,
                   fontStyle:FontStyle.normal,
                   fontSize:14,
@@ -138,36 +138,36 @@ class MapScreenState extends State<MainScreen> {
                 decoration:InputDecoration(
                   disabledBorder:OutlineInputBorder(
                     borderRadius:BorderRadius.circular(4.0),
-                    borderSide:BorderSide(
+                    borderSide:const BorderSide(
                         color:Color(0xff000000),
                         width:1
                     ),
                   ),
                   focusedBorder:OutlineInputBorder(
                     borderRadius:BorderRadius.circular(4.0),
-                    borderSide:BorderSide(
+                    borderSide:const BorderSide(
                         color:Color(0xff000000),
                         width:1
                     ),
                   ),
                   enabledBorder:OutlineInputBorder(
                     borderRadius:BorderRadius.circular(4.0),
-                    borderSide:BorderSide(
+                    borderSide:const BorderSide(
                         color:Color(0xff000000),
                         width:1
                     ),
                   ),
                   hintText:"To:Location",
-                  hintStyle:TextStyle(
+                  hintStyle:const TextStyle(
                     fontWeight:FontWeight.w400,
                     fontStyle:FontStyle.normal,
                     fontSize:14,
                     color:Color(0xff000000),
                   ),
                   filled:true,
-                  fillColor:Color(0xab700c7d),
+                  fillColor:const Color(0xab700c7d),
                   isDense:false,
-                  contentPadding:EdgeInsets.fromLTRB(12, 8, 12, 8),
+                  contentPadding:const EdgeInsets.fromLTRB(12, 8, 12, 8),
                 ),
               ),
               Container(
@@ -176,10 +176,10 @@ class MapScreenState extends State<MainScreen> {
                 width:500,
                 height:590,
                 decoration: BoxDecoration(
-                  color:Color(0xb4ebee02),
+                  color:const Color(0xb4ebee02),
                   shape:BoxShape.rectangle,
                   borderRadius:BorderRadius.zero,
-                  border:Border.all(color:Color(0x4d9e9e9e),width:1),
+                  border:Border.all(color:const Color(0x4d9e9e9e),width:1),
                 ),
                 child: GoogleMap(
                   mapType: MapType.hybrid,
@@ -192,23 +192,23 @@ class MapScreenState extends State<MainScreen> {
 
               ,
               Align(
-                alignment:Alignment(-0.1, 0.0),
+                alignment:const Alignment(-0.1, 0.0),
                 child:MaterialButton(
                   onPressed:(){},
-                  color:Color(0xab700c7d),
+                  color:const Color(0xab700c7d),
                   elevation:0,
-                  shape:RoundedRectangleBorder(
+                  shape:const RoundedRectangleBorder(
                     borderRadius:BorderRadius.zero,
                     side:BorderSide(color:Color(0xff808080),width:1),
                   ),
-                  padding:EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child:Text("Home", style: TextStyle( fontSize:14,
+                  padding:const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  textColor:const Color(0xff000000),
+                  height:90,
+                  minWidth:410,
+                  child:const Text("Home", style: TextStyle( fontSize:14,
                     fontWeight:FontWeight.w400,
                     fontStyle:FontStyle.normal,
                   ),),
-                  textColor:Color(0xff000000),
-                  height:90,
-                  minWidth:410,
                 ),
               ),
             ],),
