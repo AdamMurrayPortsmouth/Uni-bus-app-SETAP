@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "366318166639",
+    "firebase_url": "https://uni-bus-app-3187f-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "uni-bus-app-3187f",
+    "storage_bucket": "uni-bus-app-3187f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366318166639:android:a1df28c2be54104f9fe39a",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366318166639-s2poru95m2ahe201h0r775kuac4iohng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGsqnmPmdhossZozqcgp9XI5PEhWK5r_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366318166639-s2poru95m2ahe201h0r775kuac4iohng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
