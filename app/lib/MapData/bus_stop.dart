@@ -1,4 +1,4 @@
-import 'feature.dart';
+2import 'feature.dart';
 
 /// Holds the information for a bus stop.
 class BusStop extends Feature
