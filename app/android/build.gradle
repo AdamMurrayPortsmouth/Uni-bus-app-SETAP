@@ -1,3 +1,5 @@
+//Gradle build script, responsible for defining the build configuration
+
 buildscript {
     ext.kotlin_version = '1.6.10'
     repositories {
@@ -18,7 +20,7 @@ allprojects {
         mavenCentral()
     }
 }
-
+//to set up the build directory for the project/subproject
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
