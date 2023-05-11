@@ -22,7 +22,7 @@ class MapScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return Scaffold(      // Start of the styling for application
       backgroundColor: const Color(0xffffffff),
       appBar:
       AppBar(
@@ -60,7 +60,7 @@ class MapScreenState extends State<MainScreen> {
           border:Border.all(color:const Color(0x4d9e9e9e),width:1),
         ),
         child:
-        Container(  //styling for container 
+        Container(  //styling for container
           margin:EdgeInsets.zero,
           padding:EdgeInsets.zero,
           width:200,
