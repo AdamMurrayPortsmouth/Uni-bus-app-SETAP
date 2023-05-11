@@ -181,11 +181,17 @@ class MapScreenState extends State<MainScreen> {
                   borderRadius:BorderRadius.zero,
                   border:Border.all(color:const Color(0x4d9e9e9e),width:1),
                 ),
-                child: GoogleMap(         // Places the actual google API in application
+                child: GoogleMap(         // Places the actual google API in application,,  sets the child of the container to be a GoogleMap widget
                   mapType: MapType.hybrid,
                   initialCameraPosition: _kGooglePlex,
                   onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
+                    _controller.complete(controller);  //onMapCreated Function completes the _controller object with the GoogleMapController.
+
+
+
+
+
+
                   },
                 ),
               )
