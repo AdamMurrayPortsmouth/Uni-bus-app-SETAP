@@ -34,7 +34,7 @@ class MapScreenState extends State<MainScreen> {
           borderRadius:BorderRadius.zero,
         ),
         title:const Text(
-          "Map Screen",
+          "Map Screen",       // styling for the Map screen
           style:TextStyle(
             fontWeight:FontWeight.w400,
             fontStyle:FontStyle.normal,
@@ -111,7 +111,7 @@ class MapScreenState extends State<MainScreen> {
                         width:1
                     ),
                   ),
-                  hintText:"From:Location",
+                  hintText:"From:Location", //styling for search box
                   hintStyle:const TextStyle(
                     fontWeight:FontWeight.w400,
                     fontStyle:FontStyle.normal,
@@ -157,7 +157,7 @@ class MapScreenState extends State<MainScreen> {
                         width:1
                     ),
                   ),
-                  hintText:"To:Location",
+                  hintText:"To:Location", // Styling for the  search box
                   hintStyle:const TextStyle(
                     fontWeight:FontWeight.w400,
                     fontStyle:FontStyle.normal,
@@ -181,7 +181,7 @@ class MapScreenState extends State<MainScreen> {
                   borderRadius:BorderRadius.zero,
                   border:Border.all(color:const Color(0x4d9e9e9e),width:1),
                 ),
-                child: GoogleMap(         // Places the actual google API in application 
+                child: GoogleMap(         // Places the actual google API in application
                   mapType: MapType.hybrid,
                   initialCameraPosition: _kGooglePlex,
                   onMapCreated: (GoogleMapController controller) {
