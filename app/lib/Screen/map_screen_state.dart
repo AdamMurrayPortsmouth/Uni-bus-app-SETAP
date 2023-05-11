@@ -181,7 +181,7 @@ class MapScreenState extends State<MainScreen> {
                   borderRadius:BorderRadius.zero,
                   border:Border.all(color:const Color(0x4d9e9e9e),width:1),
                 ),
-                child: GoogleMap(
+                child: GoogleMap(         // Places the actual google API in application 
                   mapType: MapType.hybrid,
                   initialCameraPosition: _kGooglePlex,
                   onMapCreated: (GoogleMapController controller) {
@@ -192,7 +192,7 @@ class MapScreenState extends State<MainScreen> {
 
               ,
               Align(
-                alignment:const Alignment(-0.1, 0.0),
+                alignment:const Alignment(-0.1, 0.0), //
                 child:MaterialButton(
                   onPressed:(){},
                   color:const Color(0xab700c7d),
@@ -205,7 +205,7 @@ class MapScreenState extends State<MainScreen> {
                   textColor:const Color(0xff000000),
                   height:90,
                   minWidth:410,
-                  child:const Text("Home", style: TextStyle( fontSize:14,
+                  child:const Text("Home", style: TextStyle( fontSize:14, //styling for the home button
                     fontWeight:FontWeight.w400,
                     fontStyle:FontStyle.normal,
                   ),),

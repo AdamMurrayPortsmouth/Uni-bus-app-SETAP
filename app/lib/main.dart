@@ -23,7 +23,7 @@ class FirstRoute extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          child: const Text('Open Map'),
+          child: const Text('Open Map'), // Button to open map
           onPressed: () {
             Navigator.push(
               context,
@@ -44,7 +44,7 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Route'),
+        title: const Text('Second Route'), ///
       ),
       body: Center(
         child: ElevatedButton(
