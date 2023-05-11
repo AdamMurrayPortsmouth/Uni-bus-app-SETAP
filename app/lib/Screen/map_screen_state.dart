@@ -48,7 +48,7 @@ class MapScreenState extends State<MainScreen> {
           size:24,
         ),
       ),
-      body:Container(
+      body:Container( // styling for container
         margin:const EdgeInsets.all(0),
         padding:const EdgeInsets.all(0),
         width:500,
@@ -60,7 +60,7 @@ class MapScreenState extends State<MainScreen> {
           border:Border.all(color:const Color(0x4d9e9e9e),width:1),
         ),
         child:
-        Container(
+        Container(  //styling for container 
           margin:EdgeInsets.zero,
           padding:EdgeInsets.zero,
           width:200,
